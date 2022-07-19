@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "691586169670",
+    "project_id": "help-app-d4cdb",
+    "storage_bucket": "help-app-d4cdb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:691586169670:android:58ad23ad0070ad84e80347",
+        "android_client_info": {
+          "package_name": "mobile.com.br"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "691586169670-c1r86elpna1plbergbm59c1q4ag423jt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mobile.com.br",
+            "certificate_hash": "70b6a8aff43de1612fbc35d6c95c8137c797a6e7"
+          }
+        },
+        {
+          "client_id": "691586169670-oi8h3mg800g3c61de9cromj84raq7ma7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkVZarVcpESiBuA4xyWMoYE9FxCFRQ9b8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "691586169670-oi8h3mg800g3c61de9cromj84raq7ma7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
