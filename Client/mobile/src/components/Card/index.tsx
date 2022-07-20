@@ -10,8 +10,8 @@ import {
 } from 'native-base';
 
 import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
-import { Order } from '../../@types/order';
 import { FilterEnum } from '../../@types/filter';
+import { Order } from '../../DTOs/firestore/orderDTO';
 
 type CardProps = IPressableProps & {
   data: Order;

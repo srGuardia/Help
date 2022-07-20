@@ -1,46 +1,55 @@
-import { useCallback, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Platform } from 'react-native';
 import { Center, FlatList, Heading, Stack, VStack } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
+import firestore from '@react-native-firebase/firestore';
 
 import { Filter } from '../../components/Filter';
 import { Header } from '../../components/Header';
 import { Card } from '../../components/Card';
 import { Button } from '../../components/Button';
-import { Platform } from 'react-native';
-import { FilterEnum } from '../../@types/filter';
-import { Order } from '../../@types/order';
 import { Empty } from '../../components/Empty';
-import { useNavigation } from '@react-navigation/native';
+import { FilterEnum } from '../../@types/filter';
+import { Loading } from '../../components/Loading';
+import { dateFormat } from '../../utils/functions';
+import { Order } from '../../DTOs/firestore/orderDTO';
 
 export const Dashboard = () => {
+  const { navigate } = useNavigation();
+
+  const [isLoading, setIsLoading] = useState(true);
+
   const [activeFilter, setActiveFilter] = useState({
     open: true,
     close: false,
   });
 
-  const { navigate } = useNavigation();
-
   const [filter, setFilter] = useState<FilterEnum>(FilterEnum.open);
 
-  const [orders, setOrders] = useState<Order[]>([
-    {
-      id: '01',
-      patrimony: '121212',
-      when: '18/07/2022 às 10:00',
-      status: FilterEnum.open,
-    },
-    {
-      id: '02',
-      patrimony: '808089890',
-      when: '18/07/2022 às 14:45',
-      status: FilterEnum.close,
-    },
-    {
-      id: '03',
-      patrimony: '99098',
-      when: '18/07/2022 às 14:45',
-      status: FilterEnum.open,
-    },
-  ]);
+  const [orders, setOrders] = useState<Order[]>([]);
+
+  useEffect(() => {
+    const subscriber = firestore()
+      .collection<Order>('orders')
+      .where('status', '==', filter)
+      .onSnapshot((snapshot) => {
+        const data = snapshot.docs.map((doc) => {
+          const { patrimony, created_At, description, status } = doc.data();
+          return {
+            id: doc.id,
+            patrimony,
+            description,
+            status,
+            created_At,
+            when: dateFormat(created_At),
+          };
+        });
+        setOrders(data);
+        setIsLoading(false);
+      });
+
+    return subscriber;
+  }, [filter]);
 
   const handleFilter = (type: FilterEnum) => {
     setFilter(type);
@@ -63,10 +72,12 @@ export const Dashboard = () => {
     navigate('Details', { orderId: orderID });
   };
 
+  if (isLoading) return <Loading />;
+
   return (
     <>
       <Header />
-      <VStack flex={1} px={4} pt={10} pb={Platform.OS === 'ios' ? 10 : 0}>
+      <VStack flex={1} px={4} pt={10} pb={Platform.OS === 'ios' ? 10 : 5}>
         <Stack
           direction='row'
           justifyContent='space-between'

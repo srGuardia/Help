@@ -17,7 +17,8 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "mobile.com.br"
+      "bundleIdentifier": "mobile.com.br",
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
@@ -25,13 +26,11 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "mobile.com.br",
-      "googleServicesFile": "android/app/google-services.json"
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [
-      "@react-native-firebase/app"
-    ]
+    "plugins": ["@react-native-firebase/app"]
   }
 }

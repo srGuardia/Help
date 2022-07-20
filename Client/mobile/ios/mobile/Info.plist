@@ -28,6 +28,12 @@
           <string>mobile.com.br</string>
         </array>
       </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>com.googleusercontent.apps.691586169670-l2mln2p8gs29pp8c3a2tett0bl1ftkuk</string>
+        </array>
+      </dict>
     </array>
     <key>CFBundleVersion</key>
     <string>1</string>
