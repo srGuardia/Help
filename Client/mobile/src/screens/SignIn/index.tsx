@@ -15,14 +15,14 @@ export const SignIn = () => {
   const [visiblePassword, setVisiblePassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     try {
       if (!formState.email || !formState.password)
-        return Alert.alert('Entrar', 'Informe e-mail e senha');
+        return Alert.alert('Entrar', 'Informe o e-mail e senha');
 
       setLoading(true);
 
-      const {} = await auth()
+      auth()
         .signInWithEmailAndPassword(formState.email, formState.password)
         .catch((err) => {
           setLoading(false);
@@ -39,7 +39,7 @@ export const SignIn = () => {
         });
     } catch (error) {
       setLoading(false);
-      console.log('', error);
+      console.log('Erro', error);
     }
   };
 
